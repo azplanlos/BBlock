@@ -31,7 +31,7 @@ static char BBlockSheetKey;
     
     void (^handler)(NSInteger returnCode) = objc_getAssociatedObject(self, &BBlockSheetKey);
     [sheet orderOut:nil];
-    handler(returnCode);
+    if (handler) handler(returnCode);
     objc_setAssociatedObject(self, &BBlockSheetKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
