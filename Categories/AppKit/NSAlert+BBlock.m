@@ -20,7 +20,7 @@ static char BBlockSheetKey;
 - (void)_alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
     void (^handler)(NSInteger returnCode) = objc_getAssociatedObject(self, &BBlockSheetKey);
     [alert.window orderOut:nil];
-    handler(returnCode);
+    if (handler) handler(returnCode);
     objc_setAssociatedObject(self, &BBlockSheetKey, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 @end
